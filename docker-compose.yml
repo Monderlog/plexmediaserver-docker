@@ -17,8 +17,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ~${USERID}/plex/config:/config   #in case of migrating a plexmediaserver, for example, from the default installation of Ubuntu, put the folder in this directory "Library" from \var\lib\plexmediaserver\
-      - ~${USERID}/plex/transcode:/transcode   #the best solution would be to mount the directory on a fast drive
-      - ${GENERAL_SHARE_PATH}:${GENERAL_SHARE_PATH}   #This forwarding is my main directory with media files, in my case I store all media libraries in it, but this is not necessary and can be configured
+      - ~${USERID:?err}/plex/config:/config   #in case of migrating a plexmediaserver, for example, from the default installation of Ubuntu, put the folder in this directory "Library" from \var\lib\plexmediaserver\
+      - ~${USERID:?err}/plex/transcode:/transcode   #the best solution would be to mount the directory on a fast drive
+      - ${GENERAL_SHARE_PATH:?err}:${GENERAL_SHARE_PATH:?err}   #This forwarding is my main directory with media files, in my case I store all media libraries in it, but this is not necessary and can be configured
     environment:
-      - TZ=${TZ}
+      - TZ=${TZ:?err}
